@@ -1,0 +1,10 @@
+npm i react-router-dom
+npm install reactstrap
+npm install --save bootstrap
+import 'bootstrap/dist/css/bootstrap.min.css'; en el app
+npm i universal-cookie
+
+
+npm i --save @fortawesome/fontawesome-svg-core
+npm install --save @fortawesome/free-solid-svg-icons
+npm install --save @fortawesome/react-fontawesome

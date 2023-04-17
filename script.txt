@@ -1,0 +1,133 @@
+create table usuario(
+	idUsuario smallint not null auto_increment primary key,
+    username varchar(100),
+    password varchar(100),
+	email varchar(100),
+descripcion varchar(3000),
+tipoUsuario varchar(100),
+telefono varchar(100)
+
+);
+
+insert into  usuario(username, password,email,descripcion,tipoUsuario,telefono) values("chema11","123456789","chema112@gmail.com","descripcion del perfil de una persona","PERSONA","618273827");
+insert into  usuario(username, password,email,descripcion,tipoUsuario,telefono) values("fernando22","123456789","fer22@gmail.com","descripcion del perfil de una persona","PERSONA","677273827");
+
+insert into  usuario(username, password,email,descripcion,tipoUsuario,telefono) values("indraMinsait","123456789","indra@gmail.com","descripcion del perfil de una empresa","EMPRESA","918279927");
+insert into  usuario(username, password,email,descripcion,tipoUsuario,telefono) values("nttData","123456789","nttData@gmail.com","descripcion del perfil de una empresa","EMPRESA","944279927");
+
+
+
+create table empresa(
+	idEmpresa smallint not null auto_increment primary key,
+    idUsuario smallint,
+    FOREIGN KEY (idUsuario) REFERENCES usuario(idUsuario) on delete cascade,
+    sedeCentral varchar(100),
+    url varchar(500),
+    nombre varchar(500),
+    estructuraJuridica varchar(100)
+
+);
+
+insert into  empresa(idUsuario,sedeCentral,url,nombre,estructuraJuridica) values(3,"Madrid","www.minsait.com","Indra Minsait","sociedad limitada");
+insert into  empresa(idUsuario,sedeCentral,url,nombre,estructuraJuridica) values(4,"Madrid","www.nttdata.com","NTTDATA software","sociedad anonima");
+
+
+create table persona(
+	idPersona smallint not null auto_increment primary key,
+    idUsuario smallint,
+    FOREIGN KEY (idUsuario) REFERENCES usuario(idUsuario) on delete cascade,
+    nombre varchar(500),
+    apellidos varchar(500),
+    fechaNacimiento date,
+    sexo varchar(100)
+
+);
+
+insert into  persona(idUsuario,nombre,apellidos,fechaNacimiento,sexo) values(1,"Jose maria","Lozano Olmedo","2001-03-04","MASCULINO");
+insert into  persona(idUsuario,nombre,apellidos,fechaNacimiento,sexo) values(2,"Fernando","Rodriguez Cal","2001-01-20","MASCULINO");
+
+
+create table area(
+idArea smallint not null auto_increment primary key,
+nombre varchar(500)
+);
+
+insert into area(nombre) values("fullstack");
+insert into area(nombre) values("backend");
+insert into area(nombre) values("frontend");
+insert into area(nombre) values("data science");
+insert into area(nombre) values("machine learning");
+insert into area(nombre) values("devops");
+insert into area(nombre) values("cybersecurity");
+insert into area(nombre) values("testing");
+insert into area(nombre) values("network");
+insert into area(nombre) values("databases");
+insert into area(nombre) values("operating systems");
+insert into area(nombre) values("videogames");
+insert into area(nombre) values("mobile development");
+insert into area(nombre) values("other");
+
+create table areaInteresado(
+	
+    idArea smallint,
+    idUsuario smallint,
+    primary key(idArea,idUsuario),
+FOREIGN KEY (idArea) REFERENCES area(idArea) on delete cascade,
+FOREIGN KEY (idUsuario) REFERENCES usuario(idUsuario) on delete cascade
+);
+
+insert into areaInteresado(idArea,idUsuario) values(1,1);
+insert into areaInteresado(idArea,idUsuario) values(1,3);
+insert into areaInteresado(idArea,idUsuario) values(2,4);
+insert into areaInteresado(idArea,idUsuario) values(2,2);
+
+
+create table oferta(
+idOferta smallint not null auto_increment primary key,
+descripcion varchar(3000),
+estado varchar(100),
+idUsuario smallint,
+detallesSueldo varchar(1000),
+detallesExperiencia varchar(1000),
+detallesFormato varchar(1000),
+
+
+FOREIGN KEY (idUsuario) REFERENCES usuario(idUsuario) on delete cascade
+
+);
+
+insert into oferta(descripcion,estado,idUsuario,detallesSueldo,detallesExperiencia,detallesFormato) values("fullstack developer para diferentes proyectos","ABIERTA",3,"entre 20k a 25k","mas de 1 año en angular","totalmente remoto");
+insert into oferta(descripcion,estado,idUsuario,detallesSueldo,detallesExperiencia,detallesFormato) values("frontend engineer con angular","ABIERTA",4,"entre 19k a 23k","mas de 4 años en angular","hibrido remoto y presencial");
+
+
+create table inscripcion(
+idOferta smallint,
+idUsuario smallint,
+primary key(idOferta,idUsuario),
+FOREIGN KEY (idOferta) REFERENCES oferta(idOferta) on delete cascade,
+FOREIGN KEY (idUsuario) REFERENCES usuario(idUsuario) on delete cascade
+
+
+
+);
+
+
+insert into inscripcion(idOferta,idUsuario) values(1,1);
+insert into inscripcion(idOferta,idUsuario) values(2,2);
+
+
+create table guardada(
+idOferta smallint,
+idUsuario smallint,
+primary key(idOferta,idUsuario),
+FOREIGN KEY (idOferta) REFERENCES oferta(idOferta) on delete cascade,
+FOREIGN KEY (idUsuario) REFERENCES usuario(idUsuario) on delete cascade
+
+
+
+);
+
+
+insert into guardada(idOferta,idUsuario) values(1,1);
+insert into guardada(idOferta,idUsuario) values(2,1);
+
