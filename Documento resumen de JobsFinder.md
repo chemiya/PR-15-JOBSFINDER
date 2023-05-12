@@ -242,6 +242,9 @@ Se han realizado bocetos mediante Figma sobre la idea básica de como será la a
 Se ha utilizado un tablero en trello para gestionar las tareas a realizar
 <h2><li>Resultado final: vídeo youtube y repositorio</li></h2>
 
+Repositorio Github: https://github.com/chemiya/PR-15-JOBSFINDER.git
+
+
 <h2><li>Conclusiones</li></h2>
 He aprendido como desarrollar una aplicación con React para la parte de frontend. He podido observar las ventajas que proporciona este framework sobre sus competidores. Además he podido aplicar los conocimientos adquiridos sobre este framework en relación sobre todo a los hooks. En el backend, he aprendido a utilizar PHP para acceder a la base de datos y para comunicar los datos al frontend. 
 
