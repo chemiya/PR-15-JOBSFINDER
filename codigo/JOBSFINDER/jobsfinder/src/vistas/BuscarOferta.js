@@ -22,46 +22,48 @@ const BuscarOferta = () => {
 
   const obtenerTodasOfertas = async () => {
     try {
-      axios.get(`http://localhost/php/JOBSFINDER/ofertaDAO/obtenerOfertas.php`, {
-        
+      axios.get(`http://localhost:8080/php/JOBSFINDER/ofertaDAO/obtenerOfertas.php`, {
+
       })
         .then(res => {//peticion a la api
-           
-            console.log(res.data.ofertas.userdata)
+
+          console.log(res.data.ofertas.userdata)
           setOfertas(res.data.ofertas.userdata);//guardo los usuarios en la variable
-         
+
 
         })
     } catch (error) { throw error; }
   }
 
- 
+
 
   return (
     <div>
       <Container>
-        <Row>
+        <Row className='mt-3 mb-5'>
           <Col>
-          <h1 className='text-center'>Buscador de ofertas</h1>
+            <div class="eight">
+              <h1>Buscador ofertas</h1>
+            </div>
           </Col>
         </Row>{/**titulo */}
 
 
 
         <Row>
-        <Row>
-        {ofertas.map((item, index) => (
-            <CartaOferta item={item}/>
-            
-        ))}
-            
-        </Row>{/**ofertas */}
-          
+          <Row>
+            {ofertas.map((item, index) => (
+              <CartaOferta item={item} />
+
+            ))}
+
+          </Row>{/**ofertas */}
+
         </Row>
       </Container>
 
 
-      
+
 
     </div>//div exterior
   )

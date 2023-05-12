@@ -5,12 +5,18 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'universal-cookie';
+import { ToastContainer, toast } from 'react-toastify';
+
+  import 'react-toastify/dist/ReactToastify.css';
 
 const Identificacion = () => {
 
   const cookies = new Cookies();
 
   const navigate = useNavigate();//para navegar
+
+  const [mensajeIncorrecto, setMensajeIncorrecto] = useState(false)
+
 
   const [values, setValues] = useState({
     username: '',
@@ -34,8 +40,8 @@ const Identificacion = () => {
       isValid = false
     }
     
-    if (username && username.length < 3 || username.length > 50) {
-      validations.username = 'El username debe contener entre 5 y 50 caracteres'
+    if (username && (username.length < 5 || username.length > 100)) {
+      validations.username = 'El username debe contener entre 5 y 100 caracteres'
       isValid = false
     }
     
@@ -44,8 +50,8 @@ const Identificacion = () => {
       isValid = false
     }
 
-    if (password && password.length < 3 || password.length > 50) {
-      validations.password = 'La contraseña debe contener entre 5 y 50 caracteres'
+    if (password && (password.length < 5 || password.length > 100)) {
+      validations.password = 'La contraseña debe contener entre 5 y 100 caracteres'
       isValid = false
     }
     
@@ -77,12 +83,12 @@ const Identificacion = () => {
       message = `La contraseña es obligatoria`
     }
     
-    if (value && name === 'username' && (value.length < 3 || value.length > 50)) {
-      message = 'El username debe contener entre 5 y 50 caracteres'
+    if (value && name === 'username' && (value.length < 5 || value.length > 100)) {
+      message = 'El username debe contener entre 5 y 100 caracteres'
     }
 
-    if (value && name === 'password' && (value.length < 3 || value.length > 50)) {
-      message = 'La contraseña debe contener entre 5 y 50 caracteres'
+    if (value && name === 'password' && (value.length < 5 || value.length > 100)) {
+      message = 'La contraseña debe contener entre 5 y 100 caracteres'
     }
 
     /*if (value && name === 'email' && !/\S+@\S+\.\S+/.test(value)) {
@@ -98,6 +104,8 @@ const Identificacion = () => {
   }
 
   const handleSubmit = (e) => {
+   
+  
     e.preventDefault()
 
     const isValid = validateAll()
@@ -107,18 +115,25 @@ const Identificacion = () => {
     }
 
     
-    axios.post(`http://localhost/php/JOBSFINDER/usuarioDAO/identificarUsuario.php`, { //llamo a la  api para qu elo guarde en la base datos
+    axios.post(`http://localhost:8080/php/JOBSFINDER/usuarioDAO/identificarUsuario.php`, { //llamo a la  api para qu elo guarde en la base datos
     username: values.username,
     password: values.password,//le paso los datos
   })
   .then(res => {
   
+
+    if(res.data.success==0){
+setMensajeIncorrecto(true)
+    }else{
       cookies.set('username', res.data.usuario.userdata[0].username, { path: '/' });
       cookies.set('email', res.data.usuario.userdata[0].email, { path: '/' });
       cookies.set('telefono', res.data.usuario.userdata[0].telefono, { path: '/' });
       cookies.set('descripcion', res.data.usuario.userdata[0].descripcion, { path: '/' });
       cookies.set('idUsuario', res.data.usuario.userdata[0].idUsuario, { path: '/' });
+      notify();
       navigate(`/vistaUsuario`);//navego a la riuta
+    }
+    
   
     
    
@@ -128,6 +143,19 @@ const Identificacion = () => {
 
 
   }
+
+  const notify = () =>{ toast.success(' Te has identificado con exito', {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: true,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+    });
+  }
+  
   
   const { username,password } = values
 
@@ -192,13 +220,28 @@ const Identificacion = () => {
               </Col>
             </Row>{/*username */}
 
+<Row>
+  <Col className='d-flex justify-content-center'>
+        <a className='text-center enlace-registrate' href="/registro">¿No tienes cuenta? Registrate</a>
+  </Col>
+</Row>
+
+
+
+            <Row>
+              <Col>
+              {mensajeIncorrecto && <p className='text-center alerta'>El usuario y la contraseña introducidos son incorrectos</p>}
+              </Col>
+            </Row>
+
 
             <Row>
               <Col md="12" className="mt-3 d-flex justify-content-center">
                 <Button className="boton-aplicacion" type="submit">Entrar</Button>
-                
               </Col>
             </Row>{/*boton */}
+
+           
           </form>
 
 
@@ -206,15 +249,16 @@ const Identificacion = () => {
         </Row>
 
 
-
-
+       
+        
+     
 
 
 
       </Container>
 
 
-      
+  
 
 
     </div>//div exterior

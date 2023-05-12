@@ -8,3 +8,11 @@ npm i universal-cookie
 npm i --save @fortawesome/fontawesome-svg-core
 npm install --save @fortawesome/free-solid-svg-icons
 npm install --save @fortawesome/react-fontawesome
+
+npm install --save react-toastify
+npm i sweetalert2
+npm install cloudinary
+
+
+
+npm install si instalas desde cero

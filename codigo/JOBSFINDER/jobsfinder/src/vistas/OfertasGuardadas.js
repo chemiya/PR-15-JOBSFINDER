@@ -3,59 +3,78 @@ import { Col, Container, Row } from 'reactstrap';
 import Cookies from 'universal-cookie';
 
 import React, { useEffect, useState } from 'react'
-
+import FooterPagina from './FooterPagina';
 
 import CartaOferta from './CartaOferta';
 
 
 
 const OfertasGuardadas = () => {
-    useEffect(() => {
-        window.scrollTo(0, 0);
-        obtenerGuardadasUsuario();
-      }, []); //al cargar busco todos los usuarios
-      const cookies = new Cookies();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    obtenerGuardadasUsuario();
+  }, []); //al cargar busco todos los usuarios
+  const cookies = new Cookies();
 
-      const [guardadas, setGuardadas] = useState([])
+  const [guardadas, setGuardadas] = useState([])
+  const [sinGuardadas, setSinGuardadas] = useState(false)
 
-      const obtenerGuardadasUsuario = async () => {
-        try {
-          axios.post(`http://localhost/php/JOBSFINDER/guardadaDAO/obtenerGuardadasUsuario.php`, {
-            idUsuario: cookies.get("idUsuario")
-          })
-            .then(res => {//peticion a la api
-                console.log(cookies.get("idUsuario"))
-                console.log(res.data.guardadas.userdata)
-              setGuardadas(res.data.guardadas.userdata);//guardo los usuarios en la variable
-             
-    
-            })
-        } catch (error) { throw error; }
-      }
- 
+  const obtenerGuardadasUsuario = async () => {
+    try {
+      axios.post(`http://localhost:8080/php/JOBSFINDER/guardadaDAO/obtenerGuardadasUsuario.php`, {
+        idUsuario: cookies.get("idUsuario")
+      })
+        .then(res => {//peticion a la api
+
+          console.log(res.data)
+
+          if (res.data.success == 0) {
+            setSinGuardadas(true)
+          } else {
+            setGuardadas(res.data.guardadas.userdata);//guardo los usuarios en la variable
+            setSinGuardadas(false)
+          }
+
+
+
+
+        })
+    } catch (error) { throw error; }
+  }
+
 
   return (
     <div>
 
-    <Container>
-        <Row>
-            <Col>
-            <h1 className="text-center">Ofertas guardadas</h1>
-            </Col>
+      <Container>
+        <Row className='mt-3 mb-5'>
+          <Col>
+          <div class="eight">
+  <h1>Ofertas guardadas</h1>
+</div>
+          </Col>
         </Row>{/**titulo */}
 
-        <Row>
-        {guardadas.map((item, index) => (
-            <CartaOferta item={item}/>
-            
-        ))}
-            
-        </Row>{/**ofertas */}
 
-    </Container>
 
-      
 
+        {sinGuardadas == true ? (
+          <Row><h3 className='text-center'>No tienes ninguna oferta guardada</h3></Row>
+        ) : (
+          <Row>{guardadas.map((item, index) => (
+            <CartaOferta item={item} />
+
+          ))}</Row>
+        )}
+
+
+
+
+
+      </Container>
+
+
+      <FooterPagina></FooterPagina>
 
     </div>//div exterior
   )

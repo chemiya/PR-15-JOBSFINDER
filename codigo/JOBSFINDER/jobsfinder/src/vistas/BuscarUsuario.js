@@ -5,7 +5,7 @@ import Cookies from 'universal-cookie';
 import React, { useEffect, useState } from 'react'
 
 import CartaUsuario from './CartaUsuario';
-
+import FooterPagina from './FooterPagina';
 
 
 const BuscarUsuario = () => {
@@ -21,14 +21,14 @@ const BuscarUsuario = () => {
 
   const [validations, setValidations] = useState({
     username: '',
-    
-    
+
+
   })
- 
+
 
   const obtenerUsuarios = async () => {
     try {
-      axios.get(`http://localhost/php/JOBSFINDER/usuarioDAO/obtenerUsuarios.php`, {
+      axios.get(`http://localhost:8080/php/JOBSFINDER/usuarioDAO/obtenerUsuarios.php`, {
 
       })
         .then(res => {//peticion a la api
@@ -43,56 +43,56 @@ const BuscarUsuario = () => {
 
   const validateAll = () => {
     const { username } = values
-    const validations = { username: ''}
+    const validations = { username: '' }
     let isValid = true
-    
+
     if (!username) {
       validations.username = 'El username es obligatorio'
       isValid = false
     }
-    
-    
-   
-    
-   
-    
-    
-    
+
+
+
+
+
+
+
+
     if (!isValid) {
       setValidations(validations)
     }
-    
+
     return isValid
   }
 
-  const buscar=()=>{
+  const buscar = () => {
 
     const isValid = validateAll()
     console.log(isValid)
-    
+
     if (!isValid) {
       return false
     }
-    
-      try {
-        axios.post(`http://localhost/php/JOBSFINDER/usuarioDAO/obtenerUsuariosPorUsername.php`, {
+
+    try {
+      axios.post(`http://localhost:8080/php/JOBSFINDER/usuarioDAO/obtenerUsuariosPorUsername.php`, {
         username: values["username"],
-        tipoUsuario:selectTipoUsuario
+        tipoUsuario: selectTipoUsuario
       })
-          .then(res => {//peticion a la api
-            if(+res.data.success==0){
-              setResultadoVacio(1)
-            }else{
-              setResultadoVacio(0)
-              setUsuarios(res.data.userlist.userdata);//guardo los usuarios en la variable
-            }
-            
-  
-  
-          })
-      } catch (error) { throw error; }
-    
-    
+        .then(res => {//peticion a la api
+          if (res.data.success == 0) {
+            setResultadoVacio(1)
+          } else {
+            setResultadoVacio(0)
+            setUsuarios(res.data.userlist.userdata);//guardo los usuarios en la variable
+          }
+
+
+
+        })
+    } catch (error) { throw error; }
+
+
   }
 
   const [selectTipoUsuario, setTipoUsuario] = useState("persona");
@@ -105,49 +105,51 @@ const BuscarUsuario = () => {
 
   const [values, setValues] = useState({
     username: ''
-    
-  
+
+
   })
 
   const handleChange = (e) => {
     const { name, value } = e.target
-    setValues({...values, [name]: value })
+    setValues({ ...values, [name]: value })
   }
 
   const validateUsername = (e) => {
     const { name } = e.target
     const value = values[name]
     let message = ''
-    
+
     if (!value && name === 'username') {
       message = `El username es obligatorio`
     }
 
-   
-    
-   
 
-    
-    
-    setValidations({...validations, [name]: message })
+
+
+
+
+
+    setValidations({ ...validations, [name]: message })
   }
 
 
   const { username } = values
 
-  const { 
-    username: usernameVal, 
-   
-    
+  const {
+    username: usernameVal,
+
+
   } = validations
 
   return (
-    <div>
+    <div className='p-1'>
 
       <Container>
-        <Row>
+        <Row className='mt-3 mb-5'>
           <Col>
-            <h1 className='text-center'>Buscador de usuarios</h1>
+            <div class="eight">
+              <h1>Buscador usuarios</h1>
+            </div>
           </Col>
         </Row>{/**titulo */}
 
@@ -167,13 +169,13 @@ const BuscarUsuario = () => {
             </Row>{/**tipo usuario */}
 
 
-            <Row className='mt-3 d-flex justify-content-center'>
+            <Row className='mt-5 d-flex justify-content-center'>
               <Col md="6">
                 <Input
                   id="username"
                   name="username"
                   type="text"
-                  placeholder="Introduce el username" onChange={handleChange}  onBlur={validateUsername}
+                  placeholder="Introduce el username" onChange={handleChange} onBlur={validateUsername}
                 />
                 <p className="alerta">{usernameVal}</p>
               </Col>
@@ -204,26 +206,26 @@ const BuscarUsuario = () => {
 
 
       <Container className='mt-5'>
-        {resultadoVacio==0 ? (
+        {resultadoVacio == 0 ? (
           <Row>
-          {usuarios.map((item, index) => (
-            <CartaUsuario item={item} />
+            {usuarios.map((item, index) => (
+              <CartaUsuario item={item} botonesCerrar={false} permitirDetalle={1} />
 
-          ))}{/**carta usuario resultado busqueda */}
-        </Row>
-        ):(
+            ))}{/**carta usuario resultado busqueda */}
+          </Row>
+        ) : (
           <Row>
             <Col>
-            <h3 className='text-center'>No se ha encontrado ningun usuario con ese username</h3>
+              <h3 className='text-center'>No se ha encontrado ningún usuario con ese username</h3>
             </Col>
           </Row>
         )}
-        
-        
-        
+
+
+
       </Container>
 
-
+      <FooterPagina></FooterPagina>
 
 
     </div>//div exterior

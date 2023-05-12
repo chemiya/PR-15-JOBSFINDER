@@ -5,15 +5,20 @@ create table usuario(
 	email varchar(100),
 descripcion varchar(3000),
 tipoUsuario varchar(100),
-telefono varchar(100)
+telefono varchar(100),
+fotoRuta varchar(500)
 
 );
 
-insert into  usuario(username, password,email,descripcion,tipoUsuario,telefono) values("chema11","123456789","chema112@gmail.com","descripcion del perfil de una persona","PERSONA","618273827");
-insert into  usuario(username, password,email,descripcion,tipoUsuario,telefono) values("fernando22","123456789","fer22@gmail.com","descripcion del perfil de una persona","PERSONA","677273827");
+insert into  usuario(username, password,email,descripcion,tipoUsuario,telefono,fotoRuta) values("chema11","dUOR1XrGnF9O6BskEryGsg==","chema112@gmail.com","descripcion del perfil de una persona","PERSONA","618273827","https://res.cloudinary.com/dg8yqncy0/image/upload/v1682111574/chema_tk7s5o.jpg");
+insert into  usuario(username, password,email,descripcion,tipoUsuario,telefono,fotoRuta) values("fernando22","dUOR1XrGnF9O6BskEryGsg==","fer22@gmail.com","descripcion del perfil de una persona","PERSONA","677273827","https://res.cloudinary.com/dg8yqncy0/image/upload/v1682111572/fernando_nmrxpk.jpg");
+insert into  usuario(username, password,email,descripcion,tipoUsuario,telefono,fotoRuta) values("federicoPerez","dUOR1XrGnF9O6BskEryGsg==","fedper@gmail.com","descripcion del perfil de una persona","PERSONA","611222827","https://res.cloudinary.com/dg8yqncy0/image/upload/v1682111572/federico_pnrknw.jpg");
+insert into  usuario(username, password,email,descripcion,tipoUsuario,telefono,fotoRuta) values("martinGonzalez","dUOR1XrGnF9O6BskEryGsg==","martinGonza@gmail.com","descripcion del perfil de una persona","PERSONA","677555627","https://res.cloudinary.com/dg8yqncy0/image/upload/v1682111573/martin_tbly7o.jpg");
 
-insert into  usuario(username, password,email,descripcion,tipoUsuario,telefono) values("indraMinsait","123456789","indra@gmail.com","descripcion del perfil de una empresa","EMPRESA","918279927");
-insert into  usuario(username, password,email,descripcion,tipoUsuario,telefono) values("nttData","123456789","nttData@gmail.com","descripcion del perfil de una empresa","EMPRESA","944279927");
+insert into  usuario(username, password,email,descripcion,tipoUsuario,telefono,fotoRuta) values("indraMinsait","dUOR1XrGnF9O6BskEryGsg==","indra@gmail.com","descripcion del perfil de una empresa","EMPRESA","918279927","https://res.cloudinary.com/dg8yqncy0/image/upload/v1682110745/minsait_teoklg.png");
+insert into  usuario(username, password,email,descripcion,tipoUsuario,telefono,fotoRuta) values("nttData","dUOR1XrGnF9O6BskEryGsg==","nttData@gmail.com","descripcion del perfil de una empresa","EMPRESA","944279927","https://res.cloudinary.com/dg8yqncy0/image/upload/v1682110744/nttdata_rb5j6q.png");
+insert into  usuario(username, password,email,descripcion,tipoUsuario,telefono,fotoRuta) values("accentureOficial","dUOR1XrGnF9O6BskEryGsg==","accenture@gmail.com","descripcion del perfil de una empresa","EMPRESA","933379927","https://res.cloudinary.com/dg8yqncy0/image/upload/v1682110745/accenture_lp3ajv.jpg");
+insert into  usuario(username, password,email,descripcion,tipoUsuario,telefono,fotoRuta) values("deloitte","dUOR1XrGnF9O6BskEryGsg==","deloitte@gmail.com","descripcion del perfil de una empresa","EMPRESA","934279117","https://res.cloudinary.com/dg8yqncy0/image/upload/v1682110745/deloitte_uxormc.jpg");
 
 
 
@@ -28,8 +33,10 @@ create table empresa(
 
 );
 
-insert into  empresa(idUsuario,sedeCentral,url,nombre,estructuraJuridica) values(3,"Madrid","www.minsait.com","Indra Minsait","sociedad limitada");
-insert into  empresa(idUsuario,sedeCentral,url,nombre,estructuraJuridica) values(4,"Madrid","www.nttdata.com","NTTDATA software","sociedad anonima");
+insert into  empresa(idUsuario,sedeCentral,url,nombre,estructuraJuridica) values(5,"Alcobendas","www.minsait.com","Indra Minsait","Sociedad Limitada");
+insert into  empresa(idUsuario,sedeCentral,url,nombre,estructuraJuridica) values(6,"Madrid","www.nttdata.com","NTTDATA software","Sociedad Limitada");
+insert into  empresa(idUsuario,sedeCentral,url,nombre,estructuraJuridica) values(7,"Barcelona","www.accenture.com","Accenture soluciones","Empresario individual");
+insert into  empresa(idUsuario,sedeCentral,url,nombre,estructuraJuridica) values(8,"Alcala de Henares","www.deloitte.com","Deloitte consultoria","Empresario individual");
 
 
 create table persona(
@@ -45,6 +52,8 @@ create table persona(
 
 insert into  persona(idUsuario,nombre,apellidos,fechaNacimiento,sexo) values(1,"Jose maria","Lozano Olmedo","2001-03-04","MASCULINO");
 insert into  persona(idUsuario,nombre,apellidos,fechaNacimiento,sexo) values(2,"Fernando","Rodriguez Cal","2001-01-20","MASCULINO");
+insert into  persona(idUsuario,nombre,apellidos,fechaNacimiento,sexo) values(3,"Federico","Perez Gomez","1998-03-01","MASCULINO");
+insert into  persona(idUsuario,nombre,apellidos,fechaNacimiento,sexo) values(4,"Martin","Gonzalez Ruiz","1998-05-22","MASCULINO");
 
 
 create table area(
@@ -52,20 +61,20 @@ idArea smallint not null auto_increment primary key,
 nombre varchar(500)
 );
 
-insert into area(nombre) values("fullstack");
-insert into area(nombre) values("backend");
-insert into area(nombre) values("frontend");
-insert into area(nombre) values("data science");
-insert into area(nombre) values("machine learning");
-insert into area(nombre) values("devops");
-insert into area(nombre) values("cybersecurity");
-insert into area(nombre) values("testing");
-insert into area(nombre) values("network");
-insert into area(nombre) values("databases");
-insert into area(nombre) values("operating systems");
-insert into area(nombre) values("videogames");
-insert into area(nombre) values("mobile development");
-insert into area(nombre) values("other");
+insert into area(nombre) values("Fullstack");
+insert into area(nombre) values("Backend");
+insert into area(nombre) values("Frontend");
+insert into area(nombre) values("Data Cience");
+insert into area(nombre) values("Machine Learning");
+insert into area(nombre) values("Devops");
+insert into area(nombre) values("Cybersecurity");
+insert into area(nombre) values("Testing");
+insert into area(nombre) values("Network");
+insert into area(nombre) values("Databases");
+insert into area(nombre) values("Operating Systems");
+insert into area(nombre) values("Videogames");
+insert into area(nombre) values("Mobile Development");
+insert into area(nombre) values("Other");
 
 create table areaInteresado(
 	
@@ -80,6 +89,13 @@ insert into areaInteresado(idArea,idUsuario) values(1,1);
 insert into areaInteresado(idArea,idUsuario) values(1,3);
 insert into areaInteresado(idArea,idUsuario) values(2,4);
 insert into areaInteresado(idArea,idUsuario) values(2,2);
+insert into areaInteresado(idArea,idUsuario) values(3,1);
+insert into areaInteresado(idArea,idUsuario) values(3,3);
+insert into areaInteresado(idArea,idUsuario) values(4,4);
+insert into areaInteresado(idArea,idUsuario) values(4,2);
+
+
+
 
 
 create table oferta(
@@ -96,13 +112,39 @@ FOREIGN KEY (idUsuario) REFERENCES usuario(idUsuario) on delete cascade
 
 );
 
-insert into oferta(descripcion,estado,idUsuario,detallesSueldo,detallesExperiencia,detallesFormato) values("fullstack developer para diferentes proyectos","ABIERTA",3,"entre 20k a 25k","mas de 1 año en angular","totalmente remoto");
-insert into oferta(descripcion,estado,idUsuario,detallesSueldo,detallesExperiencia,detallesFormato) values("frontend engineer con angular","ABIERTA",4,"entre 19k a 23k","mas de 4 años en angular","hibrido remoto y presencial");
+insert into oferta(descripcion,estado,idUsuario,detallesSueldo,detallesExperiencia,detallesFormato) values("Fullstack developer para diferentes proyectos","ABIERTA",5,"Entre 20k a 25k","Mas de 1 año en angular","Totalmente remoto");
+insert into oferta(descripcion,estado,idUsuario,detallesSueldo,detallesExperiencia,detallesFormato) values("Frontend engineer con angular","ABIERTA",6,"entre 19k a 23k","mas de 4 años en angular","Hibrido remoto y presencial");
+insert into oferta(descripcion,estado,idUsuario,detallesSueldo,detallesExperiencia,detallesFormato) values("Programador Java con experiencia para numerosos proyectos de alto nivel","ABIERTA",7,"entre 35k a 45k","Mas de 5 años trabajando con Java y tambien experiencia en bases de datos","Remoto con posibilidad de acudir presencial");
+insert into oferta(descripcion,estado,idUsuario,detallesSueldo,detallesExperiencia,detallesFormato) values("Ingeniero software junior para realizar practicas","ABIERTA",5,"1800€ por 300h","Ganas de aprender y conocimientos aprendidos en el Grado de Ingenieria Informatica","Remoto con varias oficinas en España para acudir presencial");
 
+
+
+create table areaRequerido(
+	
+    idArea smallint,
+    idOferta smallint,
+    primary key(idArea,idOferta),
+FOREIGN KEY (idArea) REFERENCES area(idArea) on delete cascade,
+FOREIGN KEY (idOferta) REFERENCES oferta(idOferta) on delete cascade
+);
+
+insert into areaRequerido(idArea,idOferta) values(1,1);
+insert into areaRequerido(idArea,idOferta) values(2,1);
+insert into areaRequerido(idArea,idOferta) values(3,1);
+insert into areaRequerido(idArea,idOferta) values(3,2);
+insert into areaRequerido(idArea,idOferta) values(2,3);
+insert into areaRequerido(idArea,idOferta) values(10,3);
+insert into areaRequerido(idArea,idOferta) values(11,3);
+insert into areaRequerido(idArea,idOferta) values(11,4);
+insert into areaRequerido(idArea,idOferta) values(2,4);
+insert into areaRequerido(idArea,idOferta) values(3,4);
+insert into areaRequerido(idArea,idOferta) values(4,4);
+insert into areaRequerido(idArea,idOferta) values(5,4);
 
 create table inscripcion(
 idOferta smallint,
 idUsuario smallint,
+mensaje varchar(500),
 primary key(idOferta,idUsuario),
 FOREIGN KEY (idOferta) REFERENCES oferta(idOferta) on delete cascade,
 FOREIGN KEY (idUsuario) REFERENCES usuario(idUsuario) on delete cascade
@@ -112,8 +154,16 @@ FOREIGN KEY (idUsuario) REFERENCES usuario(idUsuario) on delete cascade
 );
 
 
-insert into inscripcion(idOferta,idUsuario) values(1,1);
-insert into inscripcion(idOferta,idUsuario) values(2,2);
+insert into inscripcion(idOferta,idUsuario,mensaje) values(1,1, "La empresa no ha cerrado la oferta");
+insert into inscripcion(idOferta,idUsuario,mensaje) values(2,1, "La empresa no ha cerrado la oferta");
+insert into inscripcion(idOferta,idUsuario,mensaje) values(3,1, "La empresa no ha cerrado la oferta");
+insert into inscripcion(idOferta,idUsuario,mensaje) values(4,1, "La empresa no ha cerrado la oferta");
+insert into inscripcion(idOferta,idUsuario,mensaje) values(2,2, "La empresa no ha cerrado la oferta");
+insert into inscripcion(idOferta,idUsuario,mensaje) values(1,2, "La empresa no ha cerrado la oferta");
+insert into inscripcion(idOferta,idUsuario,mensaje) values(4,3, "La empresa no ha cerrado la oferta");
+insert into inscripcion(idOferta,idUsuario,mensaje) values(3,3, "La empresa no ha cerrado la oferta");
+insert into inscripcion(idOferta,idUsuario,mensaje) values(2,4, "La empresa no ha cerrado la oferta");
+insert into inscripcion(idOferta,idUsuario,mensaje) values(1,4, "La empresa no ha cerrado la oferta");
 
 
 create table guardada(
@@ -130,4 +180,13 @@ FOREIGN KEY (idUsuario) REFERENCES usuario(idUsuario) on delete cascade
 
 insert into guardada(idOferta,idUsuario) values(1,1);
 insert into guardada(idOferta,idUsuario) values(2,1);
+insert into guardada(idOferta,idUsuario) values(3,1);
+insert into guardada(idOferta,idUsuario) values(4,2);
+insert into guardada(idOferta,idUsuario) values(3,2);
+insert into guardada(idOferta,idUsuario) values(4,3);
+
+
+
+
+
 

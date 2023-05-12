@@ -11,7 +11,7 @@ import {
   NavbarBrand
 } from 'reactstrap';
 
-
+import FooterPagina from './FooterPagina';
 import { faComment } from '@fortawesome/free-solid-svg-icons'
 import { faAddressBook } from '@fortawesome/free-solid-svg-icons'
 import { faCommentDollar } from '@fortawesome/free-solid-svg-icons'
@@ -50,17 +50,17 @@ const Principal = () => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ms-auto d-flex align-items-start" navbar>
             <NavItem >
-              <NavLink href="/identificacion" className="boton-principal me-2 mt-2 p-3" >Iniciar sesion</NavLink>
+              <NavLink href="/identificacion" className="me-2 mt-2 p-3" ><div className="button_slide slide_right">Iniciar sesión</div></NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/registro" className="boton-principal me-2 mt-2 p-3">Unirse ahora</NavLink>
+              <NavLink href="/registro" className=" me-2 mt-2 p-3"><div className="button_slide slide_right">Unirse ahora</div></NavLink>
             </NavItem>
 
           </Nav>
         </Collapse>
       </Navbar>{/**navbar */}
 
-      <Container>
+      <Container className='mt-5'>
         <Row className='d-flex align-items-center'>
           <Col md="6" sm="12">
             <h1 className="h1-banner">Jobsfinder facilita
@@ -83,12 +83,12 @@ const Principal = () => {
         <Container>
           <Row>
             <Col>
-              <h1>Si eres programador...</h1>
+              <h1 className='titulo-principal'>Si eres <span className="fancy">programador</span>...</h1>
             </Col>
           </Row>{/**titulo */}
 
 
-          <Row className='d-flex align-items-center'>
+          <Row className='d-flex align-items-center mt-5'>
             <Col md="6" sm="12">
               <Row >
                 <Col md="6" sm="12" className='p-2'>
@@ -123,7 +123,7 @@ const Principal = () => {
             </Col>{/**iconos */}
 
             <Col md="6" sm="12">
-              <h1>Busca ofertas de las mayores empresas del sector</h1>
+              <h1 className='text-end'>Busca ofertas de las mayores empresas del sector </h1>
             </Col>{/**texto programador */}
 
           </Row>
@@ -137,12 +137,12 @@ const Principal = () => {
         <Container>
           <Row>
             <Col>
-              <h1 className='text-end'>Si eres una empresa...</h1>
+              <h1 className='text-end titulo-principal'>Si eres una <span className="fancy">empresa</span>...</h1>
             </Col>
           </Row>{/**titulo */}
 
 
-          <Row className='d-flex align-items-center'>
+          <Row className='d-flex align-items-center mt-5'>
             <Col md="6" sm="12">
               <h1>Encuentra la
                 persona adecuada
@@ -195,8 +195,8 @@ const Principal = () => {
         <Row>
           <Col>
             <h1 className="text-center">JobsFinder
-              hace que la comunicacion
-              entre las empresas y los programadores sea rapida</h1>
+              hace que la comunicación
+              entre las empresas y los programadores sea rápida</h1>
           </Col>
         </Row>
 
@@ -205,7 +205,7 @@ const Principal = () => {
          
           <div className="col-principal-cartas d-flex flex-column justify-content-center align-items-center">
           <FontAwesomeIcon icon={faComment} className="icono-principal"/>
-          <h3>Rapida comunicacion</h3>
+          <h3>Rápida comunicación</h3>
           </div>
          
           </Col>
@@ -221,12 +221,14 @@ const Principal = () => {
 
           <div className="col-principal-cartas d-flex flex-column justify-content-center align-items-center">
           <FontAwesomeIcon icon={faCommentDollar} className="icono-principal"/>
-          <h3>Ofertas definidas</h3>
+          <h3>Ofertas variadas</h3>
           </div>
 
           </Col>
         </Row>
       </Container>
+
+      <FooterPagina></FooterPagina>
 
 
     </div>//div exterior
