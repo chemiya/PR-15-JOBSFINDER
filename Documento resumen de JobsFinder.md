@@ -243,6 +243,7 @@ Se ha utilizado un tablero en trello para gestionar las tareas a realizar
 <h2><li>Resultado final: vídeo youtube y repositorio</li></h2>
 
 Repositorio Github: https://github.com/chemiya/PR-15-JOBSFINDER.git
+Video Youtube: https://www.youtube.com/watch?v=9x-rjW1vi8g
 
 
 <h2><li>Conclusiones</li></h2>
